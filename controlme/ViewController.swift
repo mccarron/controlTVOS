@@ -27,7 +27,7 @@ class ViewController: GCEventViewController {
         
         @see GCEventViewController
         */
-        controllerUserInteractionEnabled = false
+        controllerUserInteractionEnabled = true
         view.backgroundColor = UIColor.redColor()
         becomeFirstResponder()
         
@@ -66,7 +66,7 @@ class ViewController: GCEventViewController {
         updateBackgroundColor()
     }
     
-    //MARK: Helper
+    //MARK: - Helpers
     
     func updateBackgroundColor() {
         if (self.controllerUserInteractionEnabled) {
@@ -76,9 +76,14 @@ class ViewController: GCEventViewController {
         }
     }
     
-    
-    
-    
+    func toggleInputMode() {
+        self.controllerUserInteractionEnabled = !self.controllerUserInteractionEnabled
+        if (self.controllerUserInteractionEnabled) {
+            print("Switching to UIKit Controls")
+        } else {
+            print("Switching to Gamepad Controls")
+        }
+    }
     
     //MARK: - Low Level Handling
     
@@ -90,12 +95,7 @@ class ViewController: GCEventViewController {
         for controller in controllers {
             controller.playerIndex = GCControllerPlayerIndex(rawValue: count)!
             controller.controllerPausedHandler = { controller in
-                self.controllerUserInteractionEnabled = !self.controllerUserInteractionEnabled
-                if (self.controllerUserInteractionEnabled) {
-                    print("Switching to UIKit Controls")
-                } else {
-                    print("Switching to Gamepad Controls")
-                }
+                self.toggleInputMode()
             }
             
             print("\(count+1). ", terminator:"")
