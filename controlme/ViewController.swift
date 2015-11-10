@@ -35,6 +35,52 @@ class ViewController: GCEventViewController {
             self.processControllers()
         }
     }
+
+    
+    
+    
+    
+    
+    //MARK: - UIPress
+    
+    override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        
+        self.view.backgroundColor = UIColor.blueColor()
+        
+        for item in presses {
+            if item.type == .Select {
+                print("Select pressed")
+            }
+        }
+    }
+    
+    override func pressesEnded(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        updateBackgroundColor()
+    }
+    
+    override func pressesChanged(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        // ignored
+    }
+    
+    override func pressesCancelled(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        updateBackgroundColor()
+    }
+    
+    //MARK: Helper
+    
+    func updateBackgroundColor() {
+        if (self.controllerUserInteractionEnabled) {
+            self.view.backgroundColor = UIColor.greenColor()
+        } else {
+            self.view.backgroundColor = UIColor.redColor()
+        }
+    }
+    
+    
+    
+    
+    
+    //MARK: - Low Level Handling
     
     func processControllers() {
         let controllers = GCController.controllers()
@@ -111,42 +157,6 @@ class ViewController: GCEventViewController {
         }
     }
 
-    func updateBackgroundColor() {
-        if (self.controllerUserInteractionEnabled) {
-            self.view.backgroundColor = UIColor.greenColor()
-        } else {
-            self.view.backgroundColor = UIColor.redColor()
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
-        
-        self.view.backgroundColor = UIColor.blueColor()
-        
-        for item in presses {
-            if item.type == .Select {
-                  print("Select pressed")
-            }
-        }
-    }
-    
-    override func pressesEnded(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
-        updateBackgroundColor()
-    }
-    
-    override func pressesChanged(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
-        // ignored
-    }
-    
-    override func pressesCancelled(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
-        updateBackgroundColor()
-    }
-    
 
 }
 
