@@ -4,7 +4,7 @@
 
 ### Slides: 
 
-Coming Soon
+On Speaker Deck: https://speakerdeck.com/mccarron/controlling-apple-tv-for-tvos-demo
 
 ### Links from my presentation: 
 
